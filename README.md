@@ -25,4 +25,8 @@ Yes, the url is the same as that on the subscriber program. Using the identical 
 ## Sending and processing event
 
 First, I ran the subscriber program and it connects to the rabbitMQ server. I can see it as  the connection on the rabbitMQ dashboard incremented to 1 (meaning there is 1 subscriber that connects to my rabbitMQ server and ready to consume message). Then, I ran the publisher program that sends 5 messages with different username to the rabbitMQ server. Then, rabbitMQ server accept that message and distribute the message to the active subscriber (my subscriber program). Finally, as you can see on my subscriber console, it has receive 5 message that was sent from publisher via rabbitMQ. 
-![console](assets/02_subscriber.png)
+![Subscriber accept messages from Publisher via RabbitMQ](assets/02_subscriber.png)
+
+## Monitoring chart based on publisher.
+The chart got spiked because every time I run the publisher program, it directly send 5 messages to the RabbitMQ. First, the yellow line (publish) will spike up to show that the publisher is successfully publishing the messages into the broker. Right after that, RabbitMQ resolve this by delivering those messages to the subscriber. Then the purple line (consumer ack) will also spike, which mean the subscriber already receive and cover all the messages.
+![RabbitMQ Chart spiked when publisher send 5 message](assets/03_spike.png)
