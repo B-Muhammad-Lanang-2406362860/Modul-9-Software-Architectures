@@ -18,3 +18,6 @@ My publisher program will send exactly five event messages to the RabbitMQ messa
 
 Yes, the url is the same as that on the subscriber program. Using the identical URL makes both the publisher and the subscriber are connecting to the exact same message broker instance. They will establish a synchronized communication channel where the publisher drops off its data and the subscriber knows exactly where to listen. If they used different URLs, the programs would be completely disconnected from one another.
 
+## Running RabbitMQ as Message Broker
+
+![Running RabbitMQ as Message Broker](assets/01_rabbitmq.png)
