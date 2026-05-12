@@ -21,3 +21,8 @@ Yes, the url is the same as that on the subscriber program. Using the identical 
 ## Running RabbitMQ as Message Broker
 
 ![Running RabbitMQ as Message Broker](assets/01_rabbitmq.png)
+
+## Sending and processing event
+
+First, I ran the subscriber program and it connects to the rabbitMQ server. I can see it as  the connection on the rabbitMQ dashboard incremented to 1 (meaning there is 1 subscriber that connects to my rabbitMQ server and ready to consume message). Then, I ran the publisher program that sends 5 messages with different username to the rabbitMQ server. Then, rabbitMQ server accept that message and distribute the message to the active subscriber (my subscriber program). Finally, as you can see on my subscriber console, it has receive 5 message that was sent from publisher via rabbitMQ. 
+![console](assets/02_subscriber.png)

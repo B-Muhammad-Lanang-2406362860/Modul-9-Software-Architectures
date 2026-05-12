@@ -7,14 +7,16 @@ pub struct UserCreatedEventMessage {
 }
 
 pub struct UserCreatedHandler;
+
 impl MessageHandler<UserCreatedEventMessage> for UserCreatedHandler {
     fn handle(&self, message: Box<UserCreatedEventMessage>) -> Result<(), HandleError> {
         println!("Message received on handler 1: {:?}", message);
         Ok(())
     }
 
-    fn get_handler_action(&self) -> String { todo!() }
+    fn get_handler_action(&self) -> String { String::new() }
 }
+
 fn main() {
     let mut p =
         CrosstownBus::new_queue_publisher("amqp://guest:guest@localhost:5672".to_owned()).unwrap();
