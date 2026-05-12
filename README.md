@@ -30,3 +30,7 @@ First, I ran the subscriber program and it connects to the rabbitMQ server. I ca
 ## Monitoring chart based on publisher.
 The chart got spiked because every time I run the publisher program, it directly send 5 messages to the RabbitMQ. First, the yellow line (publish) will spike up to show that the publisher is successfully publishing the messages into the broker. Right after that, RabbitMQ resolve this by delivering those messages to the subscriber. Then the purple line (consumer ack) will also spike, which mean the subscriber already receive and cover all the messages.
 ![RabbitMQ Chart spiked when publisher send 5 message](assets/03_spike.png)
+
+## Simulation Slow Subscriber
+The queue chart spiked to the level 5, meaning there is 5 messages that are still on the queue that rabbitmQ cannot yet send to the subscriber because the subscriber is still busy handling previous message (because we simulate that the subscriber must delay 1 second each time receiving a message). As you can see on the lower chart, teh deliver ack speed (the speed which rabbitmq deliver the message to the subscriber) is 1 message/second while the consumer ack (the speed which subbscriber handle the message and get busy) is only ~0.6 message/second, it means that there's a bottleneck where rabbitMQ can deliver faster but the subscriber isn't ready yet, so the queue message spiked, waiting for the subscriber to not get busy and rabbitmq can send the message again.
+![RabbitMQ Chart when the subscriber is slow](assets/04_slow.png)
